@@ -3,13 +3,16 @@ import { spicyFoods, getNewRandomSpicyFood } from "../data";
 
 function SpicyFoodList() {
 	const [foods, setFoods] = useState(spicyFoods);
+	//filtering through the array=> setting state
 	const [newFilter, setNewFilter] = useState("All");
+	//adding food to the dom
 
 	function handleAddFood() {
 		const newFood = getNewRandomSpicyFood();
 		const newFoodArray = [...foods, newFood];
 		setFoods(newFoodArray);
 	}
+	//updating food on click
 	const handleClick = (id) => {
 		const newFoodArray = foods.map((food) => {
 			if (food.id === id) {
@@ -19,6 +22,8 @@ function SpicyFoodList() {
 		});
 		setFoods(newFoodArray);
 	};
+
+	//slecting foods to display
 	const foodsToDisplay = foods.filter((food) => {
 		if (newFilter === "All") return true;
 		return food.cuisine === newFilter;
